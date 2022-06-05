@@ -1,0 +1,42 @@
+<shoppingstore-spinner *ngIf="loadingSpinner"></shoppingstore-spinner>
+<div *ngIf="!loadingSpinner">
+  <h3 *ngIf="tableDataSource.length === 0">لا توجد بيانات حتى الآن</h3>
+  <nb-card class="tableStyle" *ngIf="tableDataSource.length !== 0">
+    <nb-card-body>
+      <div class="table-header">
+        <input nbInput [(ngModel)]="searchedKeyword" placeholder="بحث..." id="search" class="search-input">
+        <button *ngIf="userRole === adminUser" nbButton shape="semi-round" outline status="success" size="medium" (click)="create()"><nb-icon icon="plus-square-outline"></nb-icon></button>
+      </div>
+      <table [nbTreeGrid]="tableDataSource" [dataSource]="tableDataSource | filter:searchedKeyword | paginate: { itemsPerPage: limit, currentPage: currentPage, totalItems: totalItems }">
+        <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="columnsItems"></tr>
+        <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: columnsItems"></tr>
+
+        <ng-container nbTreeGridColumnDef="id">
+          <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>#</th>
+          <td nbTreeGridCell *nbTreeGridCellDef="let row; let index=index">{{index+1}}</td>
+        </ng-container>
+
+        <ng-container nbTreeGridColumnDef="name">
+          <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>الإسم</th>
+          <td nbTreeGridCell *nbTreeGridCellDef="let row">{{row.name}}</td>
+        </ng-container>
+
+        <ng-container nbTreeGridColumnDef="image">
+          <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>الصورة</th>
+          <td nbTreeGridCell *nbTreeGridCellDef="let row">
+            <div class="img-hover-zoom">
+              <source [attr.defaultImage]="row.fileURL_low" [attr.lazyLoad]="row.fileURL"/>
+              <img (click)="view(row.id)" [defaultImage]="row.fileURL_low" [lazyLoad]="row.fileURL" [useSrcset]="true"/>
+           </div>
+          </td>
+        </ng-container>
+      </table>
+    </nb-card-body>
+    <nb-card-footer class="pagination">
+      <pagination-controls [responsive]="true" [autoHide]="true" nextLabel="الصفحة التالية" previousLabel="الصفحة السابقة" [maxSize]="5"
+        (pageBoundsCorrection)="getByPage(currentPage = $event)" (pageChange)="getByPage(currentPage = $event)"
+        screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+      </pagination-controls>
+    </nb-card-footer>
+  </nb-card>
+</div>

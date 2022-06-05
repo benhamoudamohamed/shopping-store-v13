@@ -1,0 +1,60 @@
+<nb-card>
+  <nb-card-header>
+    <button nbButton hero status="info" size="medium" type="button" (click)="goBack()"><nb-icon icon="arrow-forward-outline"></nb-icon></button>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="centerElement">
+      <h3 class="titlecenter">{{this.title}}</h3>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <div>
+          <label for="fullname">
+            <input nbInput fullWidth shape="round" required id="fullname" type="text" formControlName="fullname">
+            <span *ngIf="f['fullname'].touched && f['fullname'].invalid" class="invalid-feedback">
+              <span *ngIf="f['fullname'].errors" class="invalid-feedback">
+                <span *ngIf="f['fullname'].errors['required']">الاسم مطلوب</span>
+              </span>
+            </span>
+            <span class="floating-label">* الاسم</span>
+          </label>
+        </div>
+        <div>
+          <label for="password">
+            <input nbInput fullWidth shape="round" required id="password" type="password" formControlName="password" autocomplete="on">
+            <span *ngIf="f['password'].touched && f['password'].invalid" class="invalid-feedback">
+              <span *ngIf="f['password'].errors" class="invalid-feedback">
+                <span *ngIf="f['password'].errors['required']">كلمة المرور مطلوبة</span>
+              </span>
+            </span>
+            <span class="floating-label">* كلمة المرور</span>
+          </label>
+        </div>
+        <div>
+          <label for="email">
+            <input nbInput fullWidth shape="round" required id="email" type="text" formControlName="email">
+            <span *ngIf="f['email'].touched && f['email'].invalid" class="invalid-feedback">
+              <span *ngIf="f['email'].errors" class="invalid-feedback">
+                <span *ngIf="f['email'].errors['required']">البريد الإلكتروني مطلوب</span>
+              </span>
+            </span>
+            <span class="floating-label">* البريد الإلكتروني</span>
+          </label>
+        </div>
+
+        <div class="topMargin meduimwidh selectStyle">
+          <ng-select class="ng-select" placeholder="دور المستخدم" formControlName="userRole" name="userRoles" notFoundText="لا يوجد" bindValue="id" bindLabel="value" [hideSelected]="true" [multiple]="false">
+            <ng-option *ngFor="let role of ['مشرف', 'عامل'] | keyvalue" [value]="role.value">{{role.value}}</ng-option>
+          </ng-select>
+        </div>
+
+        <div class="invalid-feedback">
+          <span> {{ queryError }} </span>
+        </div>
+        <button style="margin-top: 10%;" [nbSpinner]="loadingSpinner" nbSpinnerSize="medium" nbSpinnerStatus="danger" nbButton shape="round" size="medium" status="success" type="submit" [disabled]="form.invalid">
+          <span *ngIf="!loadingSpinner">حفظ</span>
+          <span *ngIf="loadingSpinner" [nbSpinner]="loadingSpinner">تحميل...</span>
+        </button>
+      </form>
+    </div>
+  </nb-card-body>
+</nb-card>

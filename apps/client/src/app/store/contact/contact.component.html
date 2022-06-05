@@ -1,0 +1,91 @@
+
+<nb-card>
+  <nb-card-header>
+    <button nbButton hero status="info" size="medium" type="button" (click)="goBack()"><nb-icon icon="arrow-forward-outline"></nb-icon></button>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="contact centerElement" >
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <div>
+          <label for="name">
+            <input nbInput fullWidth shape="round" required id="fullname" formControlName="fullname" type="text">
+            <span *ngIf="f['fullname'].touched && f['fullname'].invalid" class="invalid-feedback">
+              <span *ngIf="f['fullname'].errors" class="invalid-feedback">
+                <span *ngIf="f['fullname'].errors['required']">الاسم مطلوب</span>
+              </span>
+            </span>
+            <span class="floating-label">* الاسم</span>
+          </label>
+        </div>
+
+        <div>
+          <label for="email">
+            <input nbInput fullWidth shape="round" required id="email" type="text" formControlName="email">
+            <span *ngIf="f['email'].touched && f['email'].invalid" class="invalid-feedback">
+              <span *ngIf="f['email'].errors" class="invalid-feedback">
+                <span *ngIf="f['email'].errors['required']">البريد الإلكتروني مطلوب</span>
+              </span>
+            </span>
+            <span class="floating-label">* البريد الإلكتروني</span>
+          </label>
+        </div>
+
+        <div>
+          <label for="phone">
+            <input nbInput fullWidth shape="round" required id="phone" formControlName="phone" type="text" (keypress)="keyPressNumbers($event)">
+            <span *ngIf="f['phone'].touched && f['phone'].invalid" class="invalid-feedback">
+              <span *ngIf="f['phone'].errors" class="invalid-feedback">
+                <span *ngIf="f['phone'].errors['required']">رقم الهاتف مطلوب</span>
+              </span>
+            </span>
+            <span class="floating-label">* رقم الهاتف</span>
+          </label>
+        </div>
+
+        <!-- <div>
+          <input nbInput fullWidth shape="round" id="phone" type="text" formControlName="phone" placeholder="Phone Number" minlength=8 maxlength=12 (keypress)="keyPress($event)" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
+          <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+            <div *ngIf="f.phone.errors.required">Phone is required</div>
+            <div *ngIf="f.phone.errors">Phone Number must be between 8 and 13 digit</div>
+          </div>
+        </div> -->
+
+        <div>
+          <label for="subject">
+            <input nbInput fullWidth shape="round" required id="subject" formControlName="subject" type="text">
+            <span *ngIf="f['subject'].touched && f['subject'].invalid" class="invalid-feedback">
+              <span *ngIf="f['subject'].errors" class="invalid-feedback">
+                <span *ngIf="f['subject'].errors['required']"> الموضوع مطلوب</span>
+              </span>
+            </span>
+            <span class="floating-label">* الموضوع</span>
+          </label>
+        </div>
+
+        <div>
+          <label for="message">
+            <input nbInput fullWidth shape="round" required id="message" formControlName="message" type="text">
+            <span *ngIf="f['message'].touched && f['subject'].invalid" class="invalid-feedback">
+              <span *ngIf="f['message'].errors" class="invalid-feedback">
+                <span *ngIf="f['message'].errors['required']"> الرسالة مطلوبة</span>
+              </span>
+            </span>
+            <span class="floating-label">* الرسالة</span>
+          </label>
+        </div>
+
+        <div class="invalid-feedback">
+          <span> {{ queryError }} </span>
+        </div>
+
+        <div class="feedback">
+          <span> {{ feedback }} </span>
+        </div>
+        <button [nbSpinner]="loadingSpinner" nbSpinnerSize="medium" nbSpinnerStatus="danger" nbButton shape="round" size="medium" style="background-color: #25373c;" type="submit" >
+          <span *ngIf="loadingSpinner === false" style="color: antiquewhite;">أرسل</span>
+          <span *ngIf="loadingSpinner === true" [nbSpinner]="loadingSpinner">تحميل...</span>
+        </button>
+      </form>
+    </div>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,11 @@
+<nb-layout>
+  <nb-layout-column>
+    <shoppingstore-spinner *ngIf="loadingSpinner"></shoppingstore-spinner>
+    <div class="centerElement" *ngIf="!loadingSpinner">
+      <h4>{{message}}</h4>
+      <button *ngIf="login" nbButton shape="rectangle" size="medium" status="info" type="botton" routerLink="/login">
+        <span>تسجيل الدخول <nb-icon icon="arrow-circle-left-outline"></nb-icon></span>
+      </button>
+    </div>
+  </nb-layout-column>
+</nb-layout>

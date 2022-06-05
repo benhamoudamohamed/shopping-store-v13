@@ -1,0 +1,66 @@
+nb-card {
+  margin: 5% 10%;
+  width: 80%;
+}
+.backButton {
+  text-align: right;
+}
+.tableStyle {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
+.tableStyle td, .tableStyle th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+.tableStyle th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+}
+nb-card-footer {
+  text-align: center;
+  justify-content: start;
+  width: 100%;
+}
+nb-card-footer button:nth-child(1) {
+  text-align: center;
+  width: 20%;
+}
+nb-card-footer button:nth-child(2) {
+  text-align: center;
+  width: 20%;
+}
+nb-card-footer button:nth-child(3) {
+  text-align: center;
+  width: 20%;
+}
+.coolQRCode {
+  margin: 0 auto;
+}
+@media screen and (max-width: 600px) {
+  nb-card {
+    width: 100%;
+    margin: 0% 0%;
+  }
+  nb-card-header h3 {
+    font-size: 10px;
+  }
+  * {
+    font-size: 9px;
+  }
+  nb-card-footer button:nth-child(1) {
+    text-align: center;
+    width: 25%;
+  }
+  nb-card-footer button:nth-child(2) {
+    text-align: center;
+    width: 25%;
+  }
+  nb-card-footer button:nth-child(3) {
+    text-align: center;
+    width: 50%;
+  }
+}

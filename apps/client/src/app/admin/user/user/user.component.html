@@ -1,0 +1,42 @@
+<shoppingstore-spinner *ngIf="loadingSpinner"></shoppingstore-spinner>
+<div *ngIf="!loadingSpinner">
+  <nb-card>
+    <nb-card-header>
+      <button class="backButton" nbButton hero status="info" size="medium" type="button" (click)="goBack()"><nb-icon icon="arrow-forward-outline"></nb-icon></button>
+    </nb-card-header>
+    <nb-card-body class="centerElement">
+      <table class="tableStyle">
+        <tr>
+          <th>الاسم واللقب</th>
+          <th>البريد الإلكتروني</th>
+          <th>دور المستخدم</th>
+          <th>تاريخ الإضافة</th>
+        <tr>
+          <td>{{ user.fullname }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.userRole }}</td>
+          <td>{{ convertedtohijri }}</td>
+          <!-- <td>{{ user.created | date }}</td> -->
+        </tr>
+      </table>
+    </nb-card-body>
+    <nb-card-footer>
+      <button *ngIf="userID === id" class="formButtons" nbButton shape="rectangle" outline status="success" size="medium" (click)="update(user.id)"><nb-icon icon="edit-2-outline"></nb-icon></button>
+      <button *ngIf="display" class="formButtons" nbButton shape="rectangle" outline status="success" size="medium" (click)="openDialog(dialog)"><nb-icon icon="trash-2-outline"></nb-icon></button>
+    </nb-card-footer>
+  </nb-card>
+</div>
+
+<nb-layout >
+  <nb-layout-column>
+    <ng-template #dialog let-data let-ref="dialogRef" class="dialogStyle">
+      <nb-card>
+        <nb-card-header>هل أنت متأكد من متابعة الحذف</nb-card-header>
+        <nb-card-footer>
+          <button class="dialogButtons" nbButton shape="rectangle" outline status="success" size="medium" (click)="delete(user.id);ref.close()"><nb-icon icon="checkmark-outline"></nb-icon></button>
+          <button style="margin-left: 5%;" class="dialogButtons" nbButton shape="rectangle" outline status="success" size="medium" (click)="ref.close()"><nb-icon icon="close-outline"></nb-icon></button>
+        </nb-card-footer>
+      </nb-card>
+    </ng-template>
+  </nb-layout-column>
+</nb-layout>

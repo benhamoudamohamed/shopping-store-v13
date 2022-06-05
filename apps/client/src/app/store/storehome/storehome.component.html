@@ -1,0 +1,73 @@
+<nb-layout>
+  <nb-layout-header fixed>
+    <img width="70" height="70" src="assets/logo.jpg" alt="logo">
+
+    <button nbButton ghost class="button-responsive" [nbContextMenu]="responsiveitemlists" nbContextMenuTrigger="click">
+      <nb-icon icon="menu-outline"></nb-icon>
+    </button>
+
+    <span class="flex-item button-responsive"></span>
+
+    <nb-actions class="right menu-responsive">
+      <nb-action [routerLink]="['']">الصفحة الرئيسية</nb-action>
+      <nb-action class="profile" [nbContextMenu]="items" nbContextMenuTrigger="click">المتجر<nb-icon icon="arrow-ios-downward-outline"></nb-icon></nb-action>
+      <nb-action [routerLink]="['about']">معلومات عنا</nb-action>
+      <nb-action [routerLink]="['contact']">اتصل بنا</nb-action>
+    </nb-actions>
+
+    <span class="example-spacer"></span>
+
+    <nb-actions class="left">
+      <nb-action [routerLink]="['cart']"><nb-icon icon="shopping-cart-outline"></nb-icon><nb-badge [text]="cartItem" status="danger" position="top right"></nb-badge></nb-action>
+    </nb-actions>
+
+    <button nbButton outline shape="round" size="medium" status="success" type="button" (click)="changeTheme()">
+      <span *ngIf="isthemeChanged"><nb-icon icon="sun-outline"></nb-icon></span>
+      <span *ngIf="!isthemeChanged"><nb-icon icon="moon-outline"></nb-icon></span>
+    </button>
+  </nb-layout-header>
+
+  <nb-layout-column class="colored-column-basic">
+    <router-outlet></router-outlet>
+
+    <div class="footer">
+      <div class="flex-item-left">
+        <h5>الروابط</h5>
+        <nb-menu style="text-align: left;" [items]="responsiveitemlists" autoCollapse="true"></nb-menu>
+      </div>
+
+      <div class="flex-item-right">
+        <h5>تابعنا</h5>
+        <a style="margin: 0 5px;" href="https://www.facebook.com/"><img src="../../../assets/facebook.png"/></a>
+        <a href="https://www.instagram.com/"><img src="../../../assets/instagram.png"/></a>
+      </div>
+
+      <div class="flex-item-center">
+        <h5>معلومات للتواصل</h5>
+        <div class="container">
+          <div>
+            <div class="flex-inner">
+              <p><nb-icon icon="pin-outline"></nb-icon>: </p>
+              <p>صرمان - الطريق الساحلي بالقرب من مصحة صرمان الكبرى</p>
+            </div>
+            <div class="flex-inner">
+              <p><nb-icon icon="phone-call-outline"></nb-icon>: </p>
+              <p>84 000 77-92 218+</p>
+            </div>
+            <div class="flex-inner">
+              <p><nb-icon icon="email-outline"></nb-icon>: </p>
+              <p>contact@rassanaco.com</p>
+            </div>
+            <div class="flex-inner">
+              <p><nb-icon icon="clock-outline"></nb-icon>: </p>
+              <p>ساعات العمل 8 صباحا - 4 مساءا</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-layout-column>
+  <nb-layout-footer>
+    <p class="footer-inner">© الرصانة جميع الحقوق محفوظة {{ date | date: 'y' }}</p>
+  </nb-layout-footer>
+</nb-layout>

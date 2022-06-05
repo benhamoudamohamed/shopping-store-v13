@@ -1,0 +1,118 @@
+<nb-card>
+  <nb-card-header>
+    <button nbButton hero status="info" size="medium" type="button" (click)="goBack()"><nb-icon icon="arrow-forward-outline"></nb-icon></button>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="centerElement">
+      <h3 class="titlecenter">{{this.title}}</h3>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <div>
+          <label for="name">
+            <input nbInput fullWidth shape="round" id="name" formControlName="name" type="text" required>
+            <span *ngIf="f['name'].touched && f['name'].invalid" class="invalid-feedback">
+              <span *ngIf="f['name'].errors" class="invalid-feedback">
+                <span *ngIf="f['name'].errors['required']">الاسم مطلوب</span>
+              </span>
+            </span>
+            <span class="floating-label">* الاسم</span>
+          </label>
+        </div>
+
+        <table class="tableStyle">
+          <tr>
+            <th class="header" colspan="2">
+              <span >* جودة متوسطة (png, jpeg, jpg) الحجم الأقصى 1 MB</span>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <div class="custom-file-upload">
+                <label for="file">
+                  <input accept="image/x-png, image/jpeg, image/jpg" (change)="onFileSecelected($event)" id="file" formControlName="file" type="file">
+                  <span *ngIf="f['file'].touched && f['file'].invalid" class="invalid-feedback">
+                    <span *ngIf="f['file'].errors" class="invalid-feedback">
+                      <span *ngIf="f['file'].errors['required']">صورة ذات جودة متوسطة مطلوبة</span>
+                    </span>
+                  </span>
+                  <span class="text-style">
+                    <nb-icon icon="cloud-upload-outline"></nb-icon><span> إختر صورة</span>
+                  </span>
+                </label>
+              </div>
+
+            </th>
+            <td>
+              <img id="file-1-preview">
+            </td>
+          </tr>
+        </table>
+        <div class="hidden">
+          <label for="fileName">
+            <input nbInput fullWidth shape="round" required id="fileName" type="text" formControlName="fileName">
+            <span class="floating-label">* fileName</span>
+          </label>
+        </div>
+        <div class="hidden">
+          <label for="fileURL">
+            <input nbInput fullWidth shape="round" required id="fileURL" type="text" formControlName="fileURL">
+            <span class="floating-label">* fileURL</span>
+          </label>
+        </div>
+
+        <table class="tableStyle">
+          <tr>
+            <th class="header" colspan="2">
+              <span >* جودة منخفضة (png, jpeg, jpg) الحجم الأقصى 1 MB</span>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <div class="custom-file-upload">
+                <label for="file_low">
+                  <input accept="image/x-png, image/jpeg, image/jpg" (change)="onFileSecelectedLow($event)" id="file_low" formControlName="file_low" type="file">
+                  <span *ngIf="f['file_low'].touched && f['file_low'].invalid" class="invalid-feedback">
+                    <span *ngIf="f['file_low'].errors" class="invalid-feedback">
+                      <span *ngIf="f['file_low'].errors['required']">صورة ذات جودة منخفضة مطلوبة</span>
+                    </span>
+                  </span>
+                  <span class="text-style">
+                    <nb-icon icon="cloud-upload-outline"></nb-icon><span> إختر صورة</span>
+                  </span>
+                </label>
+              </div>
+            </th>
+            <td>
+              <img id="file-2-preview">
+            </td>
+          </tr>
+        </table>
+        <div class="hidden">
+          <label for="fileName_low">
+            <input nbInput fullWidth shape="round" required id="fileName_low" type="text" formControlName="fileName_low">
+            <span class="floating-label">* fileName_low</span>
+          </label>
+        </div>
+        <div class="hidden">
+          <label for="fileURL_low">
+            <input nbInput fullWidth shape="round" required id="fileURL_low" type="text" formControlName="fileURL_low">
+            <span class="floating-label">* fileURL_low</span>
+          </label>
+        </div>
+
+        <div class="invalid-feedback">
+          <span> {{ sizeLimit }} </span>
+        </div>
+        <div class="invalid-feedback">
+          <span> {{ isTypesupported }} </span>
+        </div>
+        <div class="invalid-feedback">
+          <span> {{ queryError }} </span>
+        </div>
+        <button style="margin-top: 10%;" [nbSpinner]="loadingSpinner" nbSpinnerSize="medium" nbSpinnerStatus="danger" nbButton shape="round" size="medium" status="success" type="submit" [disabled]="form.invalid">
+          <span *ngIf="!loadingSpinner">حفظ</span>
+          <span *ngIf="loadingSpinner" [nbSpinner]="loadingSpinner">تحميل...</span>
+        </button>
+      </form>
+    </div>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,58 @@
+<nb-card>
+  <nb-card-header>
+    <button nbButton hero status="info" size="medium" type="button" (click)="goBack()"><nb-icon icon="arrow-forward-outline"></nb-icon></button>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="centerElement">
+      <h3 class="titlecenter">{{this.title}}</h3>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <div>
+          <label for="code">
+            <input nbInput fullWidth shape="round" required id="code" type="text" formControlName="code">
+            <span *ngIf="f['code'].touched && f['code'].invalid" class="invalid-feedback">
+              <span *ngIf="f['code'].errors" class="invalid-feedback">
+                <span *ngIf="f['code'].errors['required']">رمز الكوبون مطلوب</span>
+              </span>
+            </span>
+            <span class="floating-label">* رمز الكوبون</span>
+          </label>
+        </div>
+        <div>
+          <label for="discount">
+            <input nbInput fullWidth shape="round" required id="discount" type="text" formControlName="discount">
+            <span *ngIf="f['discount'].touched && f['discount'].invalid" class="invalid-feedback">
+              <span *ngIf="f['discount'].errors" class="invalid-feedback">
+                <span *ngIf="f['discount'].errors['required']">التخفيض مطلوب</span>
+              </span>
+            </span>
+            <span class="floating-label">* التخفيض</span>
+          </label>
+        </div>
+        <div>
+          <label for="userLimit">
+            <input nbInput fullWidth shape="round" required id="userLimit" type="text" formControlName="userLimit">
+            <span *ngIf="f['userLimit'].touched && f['userLimit'].invalid" class="invalid-feedback">
+              <span *ngIf="f['userLimit'].errors" class="invalid-feedback">
+                <span *ngIf="f['userLimit'].errors['required']">حد المستخدمين مطلوب</span>
+              </span>
+            </span>
+            <span class="floating-label">* حد المستخدمين</span>
+          </label>
+        </div>
+        <div>
+          <span style="margin-left: 10px;">انتهت صلاحيته؟</span>
+          <nb-checkbox id="expired" formControlName="expired" status="success" (checkedChange)="isExpiredEvent($event)"></nb-checkbox>
+        </div>
+
+        <div class="invalid-feedback">
+          <span> {{ queryError }} </span>
+        </div>
+        <button style="margin-top: 10%;" [nbSpinner]="loadingSpinner" nbSpinnerSize="medium" nbSpinnerStatus="danger" nbButton shape="round" size="medium" status="success" type="submit" [disabled]="form.invalid">
+          <span *ngIf="!loadingSpinner">حفظ</span>
+          <span *ngIf="loadingSpinner" [nbSpinner]="loadingSpinner">تحميل...</span>
+        </button>
+      </form>
+    </div>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,31 @@
+<shoppingstore-spinner *ngIf="loadingSpinner"></shoppingstore-spinner>
+<div *ngIf="!loadingSpinner">
+  <h2 *ngIf="products.length === 0">لا توجد منتجات</h2>
+  <div *ngIf="products.length !== 0">
+    <div class="grid-container">
+      <nb-card style="background-color: #25373c; color: antiquewhite;" class="grid" *ngFor="let product of products">
+        <nb-card-header style="position: relative; color: antiquewhite; text-align: center">
+          <span>{{product.name}}</span>
+          <nb-badge [text]="product.productCode" style="background-color: #685b43; color: antiquewhite;" position="top left"></nb-badge>
+          <nb-badge *ngIf="product.isAvailable === false" text="Out Of Stock" status="danger" position="top right"></nb-badge>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="img-hover-zoom" >
+            <source [attr.defaultImage]="product.fileURL_low" [attr.lazyLoad]="product.fileURL"/>
+            <img (click)="onClick(product.id)" [defaultImage]="product.fileURL_low" [lazyLoad]="product.fileURL" [useSrcset]="true"/>
+          </div>
+        </nb-card-body>
+        <nb-card-footer style="color: antiquewhite; text-align: center">
+          <span>{{product.price}} TND</span>
+        </nb-card-footer>
+        <nb-card-footer>
+          <button nbButton fullWidth shape="semi-round" size="medium"
+            [ngStyle]="{'background-color':product.isAvailable === false ? '#ff3d71' : '#5e7073' }"
+            (click)="addTocart(product.id, true)" [disabled]="!product.isAvailable">
+            <nb-icon icon="shopping-cart-outline"></nb-icon>
+          </button>
+        </nb-card-footer>
+      </nb-card>
+    </div>
+  </div>
+</div>

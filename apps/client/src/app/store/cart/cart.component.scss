@@ -1,0 +1,187 @@
+.headerPage {
+  text-align: center;
+  margin: 5% auto;
+}
+.headerPage h4 {
+  margin: 10% auto;
+}
+.headerPage button {
+  margin: 5% auto;
+}
+nb-card {
+  margin: 5% auto;
+}
+nb-card-header {
+  text-align: center;
+}
+.tableStyle {
+  text-align: center;
+  justify-content: center;
+  border-collapse: collapse;
+  width: 100%;
+}
+.tableStyle td, .tableStyle th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+.tableStyle th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+}
+nb-form-field input {
+  width: 80px;
+  text-align: center;
+}
+nb-card-footer {
+  justify-content: start;
+  width: 100%;
+}
+
+.flex-item5 {
+  width: 5%;
+}
+.flex-item10 {
+  width: 10%;
+}
+.flex-item-20 {
+  width: 20%;
+}
+.flex-item40 {
+  width: 40%;
+}
+.tableStyle .flex-item40 {
+  margin: 0;
+  padding: 0;
+}
+img {
+  width: 100%;
+  height: 150px;
+  margin-bottom: -5px;
+}
+
+.quantity-flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+.quantity-flex-container input {
+  text-align: center;
+  width: 100%;
+}
+// Hide arrows in input number
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.hidden {
+  display: none;
+}
+.coupon1 {
+  width: 100px;
+}
+
+.item-left {
+  grid-area: left;
+  text-align: center;
+}
+.item-center {
+  grid-area: center;
+  text-align: left;
+}
+.item-right {
+  grid-area: right;
+  text-align: right;
+}
+.grid-container {
+  display: grid;
+  grid-template-areas: 'left left center center right right';
+  grid-gap: -10px;
+  padding: 10px;
+  margin: 0% 0%;
+  width: 100%;
+  float: right;
+}
+.grid-container p {
+  margin-top: 5%;
+}
+.userForm {
+  margin: 5% auto;
+}
+.userForm input {
+  direction: rtl;
+  text-align: right;
+  margin: 5% 0%;
+}
+
+.userForm .invalid-feedback {
+  text-align: right;
+  margin-right: 2%;
+}
+
+@media only screen and (max-width: 760px) {
+  nb-card {
+    width: 100%;
+    font-size: 10px;
+  }
+  nb-card-body {
+    margin: 0;
+    padding: 0;
+  }
+  .tableStyle td, .tableStyle th {
+    padding: 4px;
+  }
+  nb-form-field input {
+    width: 60px;
+    text-align: center;
+  }
+  nb-form-field input[type="number"],
+  .item-left input[type="text"],
+  .userForm input[type="text"],
+  .coupon1,
+  p {
+    font-size: 10px;
+  }
+  .userForm {
+    width: 80%;
+  }
+  img {
+    width: 100%;
+    height: 135px;
+    margin-bottom: -5px;
+  }
+  .quantity-flex-container {
+    flex-direction: column;
+  }
+}
+@media only screen and (min-width: 768px) {
+  nb-card {
+    width: 100%;
+  }
+  nb-form-field input {
+    width: 60px;
+    text-align: center;
+  }
+  .userForm {
+    width: 60%;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  nb-card {
+    width: 80%;
+  }
+  nb-form-field input {
+    width: 70px;
+    text-align: center;
+  }
+  .userForm {
+    width: 50%;
+  }
+}

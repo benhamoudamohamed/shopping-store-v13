@@ -1,0 +1,9 @@
+<swiper [config]="config" dir="rtl">
+  <ng-template swiperSlide *ngFor="let image of images">
+    <picture>
+      <source media="(max-width: {{ screen_md }})" [attr.defaultImage]="defaultImage" [attr.lazyLoad]="image.medium"/>
+      <source media="(min-width: {{ screen_lg }})" [attr.defaultImage]="defaultImage" [attr.lazyLoad]="image.large"/>
+      <img [defaultImage]="defaultImage" [lazyLoad]="image.medium"/>
+    </picture>
+  </ng-template>
+</swiper>

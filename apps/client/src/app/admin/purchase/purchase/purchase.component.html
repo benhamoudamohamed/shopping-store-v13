@@ -1,0 +1,87 @@
+<shoppingstore-spinner *ngIf="loadingSpinner"></shoppingstore-spinner>
+
+<div *ngIf="!loadingSpinner; purchase">
+  <nb-card>
+    <nb-card-header>
+      <button class="backButton" nbButton hero status="info" size="medium" type="button" (click)="goBack()"><nb-icon icon="arrow-forward-outline"></nb-icon></button>
+    </nb-card-header>
+    <nb-card-header style="position: relative; color: black;">
+      <h5>إسم الزبون: {{purchase.clientName}}</h5>
+      <nb-badge [text]="'رقم: ' + purchase.id" style="background-color: #685b43; color: antiquewhite;" position="top right"></nb-badge>
+      <nb-badge [text]="convertedtohijri" style="background-color: #685b43; color: antiquewhite;" position="top left"></nb-badge>
+    </nb-card-header>
+
+    <nb-card-body>
+      <table class="tableStyle">
+        <tr>
+          <th class="flex-item10">الإسم</th>
+          <th class="flex-item10">الصورة</th>
+          <th class="flex-item5">السعر</th>
+          <th class="flex-item5">الكمية</th>
+          <th class="flex-item5">التكلفة</th>
+        </tr>
+        <tr *ngFor="let item of purchase.items">
+          <td>{{ item.productName }}</td>
+          <td style="margin: 0 0; padding: 0 0;">
+            <img width="500" height="500" [src]="item.image" alt="{{ item.image }}" onError="this.src='http://localhost:3000/api/upload/imagenotfound.jpg'">
+          </td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.cost }}</td>
+        </tr>
+      </table>
+      <div class="grid-container">
+        <div class="item-center">
+          <table>
+            <tr>
+              <th><p>المجموع الفرعي:</p></th>
+            </tr>
+            <tr>
+              <th><p>معدل الخصم: </p></th>
+            </tr>
+            <tr>
+              <th><p>السعر الجملي:</p></th>
+            </tr>
+          </table>
+        </div>
+        <div class="item-right">
+          <table>
+            <tr>
+              <td>
+                <p>{{ purchase.subtotal }}</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>{{ purchase.discount }}%</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>{{ purchase.grandTotal }}</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <table class="tableStyle">
+        <tr>
+          <th class="flex-item20">إسم الزبون</th>
+          <th class="flex-item20">البريد الإلكتروني</th>
+          <th class="flex-item20">الهاتف</th>
+          <th class="flex-item20">العنوان</th>
+        </tr>
+        <tr>
+          <td>{{ purchase.clientName }}</td>
+          <td>{{ purchase.email }}</td>
+          <td>{{ purchase.phone }}</td>
+          <td>{{ purchase.address }}</td>
+        </tr>
+      </table>
+    </nb-card-body>
+    <nb-card-footer>
+      <button class="footerButton" nbButton shape="rectangle" outline status="success" size="medium" (click)="delete(purchase.id)"><nb-icon icon="trash-2-outline"></nb-icon></button>
+    </nb-card-footer>
+  </nb-card>
+</div>

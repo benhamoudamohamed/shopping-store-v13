@@ -1,0 +1,32 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 10px;
+  padding: 10px;
+}
+img {
+  object-fit: cover;
+  width: 100%;
+  height: 250px;
+}
+h2 {
+  text-align: center;
+}
+nb-card-body {
+  margin: 0;
+  padding: 0;
+}
+// Zoom effect
+.img-hover-zoom {
+  height: auto; /* [1.1] Set it as per your need */
+  overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+}
+/* [2] Transition property for smooth transformation of images */
+.img-hover-zoom img {
+  transition: transform .5s ease;
+}
+/* [3] Finally, transforming the image when container gets hovered */
+.img-hover-zoom:hover img {
+  transform: scale(1.5);
+}
+// Zoom effect

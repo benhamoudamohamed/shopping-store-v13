@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'themes' as *;
+@use '@nebular/theme/styles/globals' as *;
+@include nb-install() {
+  @include nb-theme-global();
+};
+@import 'swiper/swiper-bundle.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import "~swiper/css/thumbs";
+@import "~swiper/css/zoom";
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+.hidden {
+  display: none !important;
+}

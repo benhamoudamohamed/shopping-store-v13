@@ -1,0 +1,56 @@
+.centerElement {
+  margin: 0% 25%;
+  width: 50%;
+  max-height: 100vh;
+}
+.marginTop {
+  margin-top: 5%;
+}
+form {
+  margin-top: 5%;
+}
+form button {
+  text-align: center;
+  justify-content: center;
+  margin: 2% 40%;
+}
+.invalid-feedback {
+  color: rgb(212, 4, 4);
+  text-align: right;
+  margin-right: 2%;
+  margin-bottom: 0;
+}
+nb-card-footer {
+  text-align: center;
+}
+/* Floating Labels */
+label{
+  position:relative;
+}
+input{
+  direction: rtl;
+  text-align: right;
+  margin: 5% 0%;
+}
+.floating-label{
+  position:absolute;
+  top: 0px;
+  right: 12px;
+  transform:translateY(0px);
+  font-size:0.825em;
+  transition-duration:300ms;
+}
+input[type]:focus + .floating-label,
+input[type]:valid + .floating-label {
+  transform:translateY(-32px);
+}
+
+@media screen and (max-width: 600px) {
+  * {
+    font-size: 9px;
+  }
+  .centerElement {
+    margin: 0% 0%;
+    width: 100%;
+  }
+}

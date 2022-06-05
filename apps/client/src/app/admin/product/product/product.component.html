@@ -1,0 +1,59 @@
+<shoppingstore-spinner *ngIf="loadingSpinner"></shoppingstore-spinner>
+<div *ngIf="!loadingSpinner">
+  <nb-card>
+    <nb-card-header>
+      <button class="backButton" nbButton hero status="info" size="medium" type="button" (click)="goBack()"><nb-icon icon="arrow-forward-outline"></nb-icon></button>
+    </nb-card-header>
+    <nb-card-header>
+      <img class="header-image" src="{{product.fileURL}}" alt="{{product.fileName}}">
+    </nb-card-header>
+
+    <nb-card-body class="centerElement">
+      <table class="tableStyle">
+        <tr>
+          <th>المنتج</th>
+          <td>{{ product.name }}</td>
+        </tr>
+        <tr>
+          <th>كود المنتج</th>
+          <td>{{ product.productCode }}</td>
+        </tr>
+        <tr>
+          <th>كمية المخزون</th>
+          <td>{{ product.price }}</td>
+        </tr>
+        <tr>
+          <th>في المفضلة؟</th>
+          <td>{{ product.isFavorite }}</td>
+        </tr>
+        <tr>
+          <th>إظهار المنتج؟</th>
+          <td>{{ product.isAvailable }}</td>
+        </tr>
+        <tr>
+          <th>تاريخ الإضافة</th>
+          <td>{{ convertedtohijri }}</td>
+          <!-- <th>{{ user.created | date }}</th> -->
+        </tr>
+      </table>
+    </nb-card-body>
+    <nb-card-footer>
+      <button class="formButtons" nbButton shape="rectangle" outline status="success" size="medium" (click)="update(product.id)"><nb-icon icon="edit-2-outline"></nb-icon></button>
+      <button class="formButtons" nbButton shape="rectangle" outline status="success" size="medium" (click)="openDialog(dialog)"><nb-icon icon="trash-2-outline"></nb-icon></button>
+    </nb-card-footer>
+  </nb-card>
+</div>
+
+<nb-layout >
+  <nb-layout-column>
+    <ng-template #dialog let-data let-ref="dialogRef" class="dialogStyle">
+      <nb-card>
+        <nb-card-header>هل أنت متأكد من متابعة الحذف</nb-card-header>
+        <nb-card-footer>
+          <button class="dialogButtons" nbButton shape="rectangle" outline status="success" size="medium" (click)="delete(product.id);ref.close()"><nb-icon icon="checkmark-outline"></nb-icon></button>
+          <button style="margin-left: 5%;" class="dialogButtons" nbButton shape="rectangle" outline status="success" size="medium" (click)="ref.close()"><nb-icon icon="close-outline"></nb-icon></button>
+        </nb-card-footer>
+      </nb-card>
+    </ng-template>
+  </nb-layout-column>
+</nb-layout>

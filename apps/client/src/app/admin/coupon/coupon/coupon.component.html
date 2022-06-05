@@ -1,0 +1,34 @@
+<shoppingstore-spinner *ngIf="loadingSpinner"></shoppingstore-spinner>
+<div *ngIf="!loadingSpinner; coupon">
+  <nb-card>
+    <nb-card-header>
+      <button class="backButton" nbButton hero status="info" size="medium" type="button" (click)="goBack()"><nb-icon icon="arrow-forward-outline"></nb-icon></button>
+    </nb-card-header>
+    <nb-card-body>
+      <table class="tableStyle">
+        <tr>
+          <th>رمز الكوبون	</th>
+          <th>التخفيض</th>
+          <th>حد المستخدمين</th>
+          <th>انتهت صلاحيته؟</th>
+          <th>تاريخ الإضافة</th>
+        <tr>
+          <td>{{ coupon.code }}</td>
+          <td>%{{ coupon.discount }}</td>
+          <td>{{ coupon.userLimit }}</td>
+          <td>{{ coupon.expired }}</td>
+          <td>{{ convertedtohijri }}</td>
+        </tr>
+      </table>
+    </nb-card-body>
+
+    <nb-card-footer *ngIf="!coupon.expired"  class="coolQRCode">
+      <qrcode [title]="'رمز الكوبون'" [cssClass]="'coolQRCode'" [qrdata]="qrdata" [width]="128" [elementType]="'url'" [errorCorrectionLevel]="'H'"></qrcode>
+    </nb-card-footer>
+    <nb-card-footer>
+      <button nbButton shape="rectangle" outline status="success" size="medium" (click)="update(coupon.id)"><nb-icon icon="edit-2-outline"></nb-icon></button>
+      <button nbButton shape="rectangle" outline status="success" size="medium" (click)="delete(coupon.id)"><nb-icon icon="trash-2-outline"></nb-icon></button>
+      <button nbButton shape="rectangle" outline status="success" size="medium" (click)="downloadQRCode()">QRCode<nb-icon icon="cloud-download-outline"></nb-icon></button>
+    </nb-card-footer>
+  </nb-card>
+</div>

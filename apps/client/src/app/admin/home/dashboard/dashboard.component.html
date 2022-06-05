@@ -1,0 +1,27 @@
+<nb-layout>
+  <nb-layout-header fixed>
+    <a href="#" (click)="toggle()"><nb-icon icon="menu"></nb-icon><i class="nb-menu"></i></a>
+    <span style="margin-right: 10%;"></span>
+
+    <nb-actions class="left menu-responsive">
+      <nb-action class="profile" skipLocationChange="true" [nbContextMenu]="useritems" nbContextMenuTrigger="hover">
+        <nb-user class="buttonUser" [name]="fullname" [title]="userRole"></nb-user>
+      </nb-action>
+    </nb-actions>
+
+    <span class="example-spacer"></span>
+
+    <button nbButton outline shape="round" size="medium" status="success" type="button" (click)="changeTheme()">
+      <span *ngIf="isthemeChanged"><nb-icon icon="sun-outline"></nb-icon></span>
+      <span *ngIf="!isthemeChanged"><nb-icon icon="moon-outline"></nb-icon></span>
+    </button>
+  </nb-layout-header>
+
+  <nb-sidebar right="true" responsive="true">
+    <nb-menu [items]="items" autoCollapse="true"></nb-menu>
+  </nb-sidebar>
+
+  <nb-layout-column class="colored-column-basic" right="false">
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+</nb-layout>

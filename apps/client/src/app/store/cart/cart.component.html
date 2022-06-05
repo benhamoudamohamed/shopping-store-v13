@@ -1,0 +1,154 @@
+<div class="headerPage" *ngIf="products.length === 0">
+  <h2>سلة التسوق فارغة</h2>
+  <button nbButton shape="round" size="small" type="button" style="background-color: #685b43; color: antiquewhite;" routerLink="/store/shop">الرجوع للمتجر</button>
+</div>
+
+<div *ngIf="products.length !== 0">
+  <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()" novalidate>
+    <nb-card>
+      <nb-card-header>سلة التسوق</nb-card-header>
+      <nb-card-body>
+        <table class="tableStyle">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>الصورة</th>
+              <th>الإسم</th>
+              <th>السعر</th>
+              <th>الكمية</th>
+              <th>التكلفة</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody formArrayName="items">
+            <tr *ngFor="let item of productItems.controls; let i = index;" [formGroupName]="i">
+              <th class="flex-item5">{{i + 1}}</th>
+              <td class="flex-item40"><img src="{{ item.get('image')?.value }}"></td>
+              <td class="flex-item10">{{ item.get('productName')?.value }}</td>
+              <td class="flex-item10">{{ item.get('price')?.value }}</td>
+              <td class="flex-item-20">
+                <div class="quantity-flex-container">
+                  <button nbSuffix nbButton ghost type="button" (click)="changeQuantity(i, true)">
+                    <nb-icon icon="plus-square-outline"></nb-icon>
+                  </button>
+                  <input nbInput minlength=1 maxlength=4 (keypress)="keyPressNumbers($event)" type="text" formControlName="quantity" name="quantity" value="{{quantity}}">
+                  <button nbSuffix nbButton ghost type="button" (click)="changeQuantity(i, false)">
+                    <nb-icon icon="minus-square-outline"></nb-icon>
+                  </button>
+                </div>
+              </td>
+              <td class="flex-item10">
+                <input nbInput class="hidden" type="text" formControlName="cost" name="cost" value="{{ item.get('price')?.value * item.get('quantity')?.value }}">
+                {{ item.get('price')?.value * item.get('quantity')?.value }}
+              </td>
+              <td class="flex-item5">
+                <button nbButton shape="round" size="small" type="button" style="background-color: #ff3d71;">
+                  <nb-icon (click)="removeItem(i)" icon="trash-2-outline"></nb-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </nb-card-body>
+      <nb-card-footer>
+        <div class="grid-container">
+          <div class="item-left">
+            <table>
+              <tr>
+                <th>
+                  <p><input class="coupon1" nbInput type="text" formControlName="coupon" name="coupon" placeholder="الكوبون"></p>
+                  <p>{{message}}</p>
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  <p><button nbButton shape="round" size="small" type="button" style="background-color: #685b43; color: antiquewhite;" (click)="setCodePromo()">Apply</button></p>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="item-center">
+            <table>
+              <tr>
+                <th [ngClass]="invoiceForm.controls['discount'].value === 0 ? 'hidden' : ''"><p>المجموع الفرعي:</p></th>
+              </tr>
+              <tr [ngClass]="invoiceForm.controls['discount'].value === 0 ? 'hidden' : ''">
+                <th><p>معدل الخصم: {{invoiceForm.controls['discount'].value}}%</p></th>
+              </tr>
+              <tr>
+                <th><p>السعر الجملي:</p></th>
+              </tr>
+            </table>
+          </div>
+          <div class="item-right">
+            <table>
+              <tr [ngClass]="invoiceForm.controls['discount'].value === 0 ? 'hidden' : ''">
+                <td>
+                  <input nbInput class="hidden" type="text" formControlName="subtotal" name="subtotal" value="{{subTotal}}">
+                  <p>{{subTotal}}</p>
+                </td>
+              </tr>
+              <tr [ngClass]="invoiceForm.controls['discount'].value === 0 ? 'hidden' : ''">
+                <td>
+                  <input class="hidden" nbInput type="text" formControlName="discount" name="discount" value="{{discount}}">
+                  <p>{{(invoiceForm.controls['discount'].value/100 * subTotal).toFixed(2)}}</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input nbInput class="hidden" type="text" formControlName="grandTotal" name="grandTotal" value="{{(subTotal - invoiceForm.controls['discount'].value/100 * subTotal)}}">
+                  <p>{{(subTotal - invoiceForm.controls['discount'].value/100 * subTotal)}}</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="userForm">
+          <div>
+            <input nbInput fullWidth shape="round" required id="clientName" type="text" formControlName="clientName" name="clientName" placeholder="الإسم">
+            <span *ngIf="f['clientName'].touched && f['clientName'].invalid" class="invalid-feedback">
+              <span *ngIf="f['clientName'].errors" class="invalid-feedback">
+                <span *ngIf="f['clientName'].errors['required']">الاسم مطلوب</span>
+              </span>
+            </span>
+          </div>
+          <div>
+            <input nbInput fullWidth shape="round" id="phone" type="text" formControlName="phone" name="phone" placeholder="الهاتف" (keypress)="keyPressNumbers($event)">
+            <span *ngIf="f['phone'].touched && f['phone'].invalid" class="invalid-feedback">
+              <span *ngIf="f['phone'].errors" class="invalid-feedback">
+                <span *ngIf="f['phone'].errors['required']">الهاتف مطلوب</span>
+              </span>
+            </span>
+          </div>
+          <div>
+            <input nbInput fullWidth shape="round" required id="email" type="text" formControlName="email" name="email" placeholder="البريد الإلكتروني">
+            <span *ngIf="f['email'].touched && f['email'].invalid" class="invalid-feedback">
+              <span *ngIf="f['email'].errors" class="invalid-feedback">
+                <span *ngIf="f['email'].errors['required']">البريد الإلكتروني مطلوب</span>
+              </span>
+            </span>
+          </div>
+          <div>
+            <input nbInput fullWidth shape="round" required id="address" type="text" formControlName="address" name="address" placeholder="العنوان">
+            <span *ngIf="f['address'].touched && f['address'].invalid" class="invalid-feedback">
+              <span *ngIf="f['address'].errors" class="invalid-feedback">
+                <span *ngIf="f['address'].errors['required']">العنوان مطلوب</span>
+              </span>
+            </span>
+          </div>
+
+          <div class="invalid-feedback">
+            <span> {{ queryError }} </span>
+          </div>
+          <div style="text-align: center; margin-top: 5%">
+            <button [nbSpinner]="loadingSpinner" nbSpinnerSize="medium" nbSpinnerStatus="danger" style="background-color: #5e7073; color: antiquewhite;" nbButton shape="round" size="medium" type="submit" [disabled]="invoiceForm.invalid">
+              <span *ngIf="!loadingSpinner"><nb-icon icon="paper-plane-outline"></nb-icon> أرسل</span>
+              <span *ngIf="loadingSpinner" [nbSpinner]="loadingSpinner">تحميل...</span>
+            </button>
+          </div>
+        </div>
+      </nb-card-footer>
+    </nb-card>
+  </form>
+</div>

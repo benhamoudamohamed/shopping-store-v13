@@ -1,0 +1,17 @@
+<shoppingstore-spinner *ngIf="loadingSpinner"></shoppingstore-spinner>
+<div *ngIf="loadingSpinner === false">
+  <h2 *ngIf="categories.length === 0">لا توجد منتجات</h2>
+  <div *ngIf="categories.length !== 0">
+    <div class="grid-container">
+      <nb-card style="background-color: #25373c; color: antiquewhite;" *ngFor="let category of categories">
+        <nb-card-header style="color: antiquewhite; text-align: center;">{{category.name}}</nb-card-header>
+        <nb-card-body>
+          <div class="img-hover-zoom">
+             <source [attr.defaultImage]="category.fileURL_low" [attr.lazyLoad]="category.fileURL"/>
+             <img (click)="onClick(category.id)" [defaultImage]="category.fileURL_low" [lazyLoad]="category.fileURL" [useSrcset]="true"/>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>

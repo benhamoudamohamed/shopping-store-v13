@@ -1,0 +1,62 @@
+nb-card-header button {
+  text-align: right;
+}
+// nb-card-header img {
+//   display: block;
+//   margin: 0 auto;
+//   width: 70%;
+//   height: auto;
+// }
+.header-image {
+  width: 100%;
+  height: auto;
+}
+.centerElement {
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+}
+.tableStyle {
+  border-collapse: collapse;
+  width: 100%;
+  overflow-x:auto
+}
+.tableStyle th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.tableStyle td, .tableStyle th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: right;
+}
+.tableStyle td {
+  width: 70%;
+}
+
+nb-card-footer {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.formButtons{
+  width: 25%;
+}
+.dialogButtons{
+  width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+  * {
+    font-size: 11px;
+  }
+  nb-card {
+    width: 100%;
+    margin: 0% 0%;
+  }
+  nb-card-header img {
+    width: 100%;
+    height: auto;
+  }
+}

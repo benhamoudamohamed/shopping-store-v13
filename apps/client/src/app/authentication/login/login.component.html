@@ -1,0 +1,51 @@
+<nb-layout>
+  <nb-layout-column>
+    <nb-card>
+      <nb-card-header>
+        <button nbButton hero status="info" size="medium" type="button" (click)="goBack()"><nb-icon icon="arrow-forward-outline"></nb-icon></button>
+      </nb-card-header>
+      <nb-card-body>
+        <div class="centerElement">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+            <div>
+              <label for="email">
+                <input nbInput fullWidth shape="round" required id="email" type="text" formControlName="email">
+                <span *ngIf="f['email'].touched && f['email'].invalid" class="invalid-feedback">
+                  <span *ngIf="f['email'].errors" class="invalid-feedback">
+                    <span *ngIf="f['email'].errors['required']">البريد الإلكتروني مطلوب</span>
+                  </span>
+                </span>
+                <span class="floating-label">* البريد</span>
+              </label>
+            </div>
+            <div>
+              <label for="email">
+                <input nbInput fullWidth shape="round" required id="password" type="password" formControlName="password" autocomplete="on">
+                <span *ngIf="f['password'].touched && f['password'].invalid" class="invalid-feedback">
+                  <span *ngIf="f['password'].errors" class="invalid-feedback">
+                    <span *ngIf="f['password'].errors['required']">كلمة المرور مطلوبة</span>
+                  </span>
+                </span>
+                <span class="floating-label">* كلمة المرور</span>
+              </label>
+            </div>
+
+            <div class="invalid-feedback">
+              <span> {{ queryError }} </span>
+            </div>
+
+            <button [nbSpinner]="loadingSpinner" nbSpinnerSize="medium" nbSpinnerStatus="danger" nbButton shape="round" size="medium" status="success" type="submit" [disabled]="form.invalid">
+              <span *ngIf="loadingSpinner === false">تسجيل الدخول</span>
+              <span *ngIf="loadingSpinner === true" [nbSpinner]="loadingSpinner">تحميل...</span>
+            </button>
+          </form>
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <section aria-label="resetPassowrd">
+          <a class="text-link" routerLink="/resetPassowrd">نسيت كلمة المرور</a>
+        </section>
+      </nb-card-footer>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>

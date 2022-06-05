@@ -1,0 +1,176 @@
+<!-- <shoppingstore-spinner *ngIf="loadingSpinner"></shoppingstore-spinner>
+<div *ngIf="!loadingSpinner">
+  <div *ngIf="product">
+    <div class="grid-container">
+      <nb-card style="background-color: #25373c; color: antiquewhite;" class="grid">
+        <nb-card-header style="position: relative; color: antiquewhite; text-align: center">
+          <span>{{product.name}}</span>
+          <nb-badge [text]="product.productCode" style="background-color: #685b43; color: antiquewhite;" position="top left"></nb-badge>
+          <nb-badge *ngIf="product.isAvailable === false" text="Out Of Stock" status="danger" position="top right"></nb-badge>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="img-hover-zoom" >
+            <source [attr.defaultImage]="product.fileURL_low" [attr.lazyLoad]="product.fileURL"/>
+            <img [defaultImage]="product.fileURL_low" [lazyLoad]="product.fileURL" [useSrcset]="true"/>
+          </div>
+        </nb-card-body>
+        <nb-card-footer style="color: antiquewhite; text-align: center">
+          <span>{{product.price}} TND</span>
+        </nb-card-footer>
+        <nb-card-footer>
+          <button nbButton fullWidth shape="semi-round" size="medium"
+            [ngStyle]="{'background-color':product.isAvailable === false ? '#ff3d71' : '#5e7073' }"
+            (click)="addTocart(product.id, true)" [disabled]="!product.isAvailable">
+            <nb-icon icon="shopping-cart-outline"></nb-icon>
+          </button>
+        </nb-card-footer>
+      </nb-card>
+    </div>
+  </div>
+</div> -->
+
+<!-- <section>
+  <div class="container">
+    <div class="carousel">
+      <input type="radio" name="slides" checked="checked" id="slide-1">
+      <input type="radio" name="slides" id="slide-2">
+      <input type="radio" name="slides" id="slide-3">
+      <input type="radio" name="slides" id="slide-4">
+      <input type="radio" name="slides" id="slide-5">
+      <input type="radio" name="slides" id="slide-6">
+      <ul class="carousel__slides">
+        <li class="carousel__slide">
+          <figure>
+            <div>
+              <img src="https://picsum.photos/id/1041/800/450" alt="">
+            </div>
+            <figcaption>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <span class="credit">Photo: Tim Marshall</span>
+            </figcaption>
+          </figure>
+        </li>
+        <li class="carousel__slide">
+          <figure>
+            <div>
+              <img src="https://picsum.photos/id/1043/800/450" alt="">
+            </div>
+            <figcaption>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <span class="credit">Photo: Christian Joudrey</span>
+            </figcaption>
+          </figure>
+        </li>
+        <li class="carousel__slide">
+          <figure>
+            <div>
+              <img src="https://picsum.photos/id/1044/800/450" alt="">
+            </div>
+            <figcaption>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <span class="credit">Photo: Steve Carter</span>
+            </figcaption>
+          </figure>
+        </li>
+        <li class="carousel__slide">
+          <figure>
+            <div>
+              <img src="https://picsum.photos/id/1045/800/450" alt="">
+            </div>
+            <figcaption>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <span class="credit">Photo: Aleksandra Boguslawska</span>
+            </figcaption>
+          </figure>
+        </li>
+        <li class="carousel__slide">
+          <figure>
+            <div>
+              <img src="https://picsum.photos/id/1049/800/450" alt="">
+            </div>
+            <figcaption>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <span class="credit">Photo: Rosan Harmens</span>
+            </figcaption>
+          </figure>
+        </li>
+        <li class="carousel__slide">
+          <figure>
+            <div>
+              <img src="https://picsum.photos/id/1052/800/450" alt="">
+            </div>
+            <figcaption>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <span class="credit">Photo: Annie Spratt</span>
+            </figcaption>
+          </figure>
+        </li>
+      </ul>
+      <ul class="carousel__thumbnails">
+        <li>
+          <label for="slide-1"><img src="https://picsum.photos/id/1041/150/150" alt=""></label>
+        </li>
+        <li>
+            <label for="slide-2"><img src="https://picsum.photos/id/1043/150/150" alt=""></label>
+        </li>
+        <li>
+            <label for="slide-3"><img src="https://picsum.photos/id/1044/150/150" alt=""></label>
+        </li>
+        <li>
+            <label for="slide-4"><img src="https://picsum.photos/id/1045/150/150" alt=""></label>
+        </li>
+        <li>
+            <label for="slide-5"><img src="https://picsum.photos/id/1049/150/150" alt=""></label>
+        </li>
+        <li>
+            <label for="slide-6"><img src="https://picsum.photos/id/1052/150/150" alt=""></label>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section> -->
+
+<div style="margin-top: 200px;"></div>
+
+<section>
+  <div class="container">
+    <div class="carousel">
+      <!-- <input type="radio" name="slides" id="slide-2">
+      <input type="radio" name="slides" id="slide-3">
+      <input type="radio" name="slides" id="slide-4">
+      <input type="radio" name="slides" id="slide-5">
+      <input type="radio" name="slides" id="slide-6"> -->
+
+      <ul class="carousel__slides">
+        <li>
+
+        </li>
+        <li class="carousel__slide" *ngFor="let image of images">
+          <figure>
+            <div>
+              <input type="radio" name="slides" [id]="image.id">
+              <img [src]="image.large" [alt]="image.large">
+            </div>
+            <figcaption>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <span class="credit">Photo: Tim Marshall</span>
+            </figcaption>
+          </figure>
+        </li>
+      </ul>
+      <ul class="carousel__thumbnails">
+        <li *ngFor="let image of images">
+          <label [for]="image.id"><img [src]="image.large" [alt]="image.large"></label>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+
+<div class="image-wrap" >
+  <img class="image">
+ </div>
+
+

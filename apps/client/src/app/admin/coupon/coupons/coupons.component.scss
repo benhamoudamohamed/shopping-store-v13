@@ -1,0 +1,106 @@
+.tableStyle {
+  width: 80%;
+  margin: 5% 10%;
+}
+.table-header {
+  margin: 2% 0%;
+}
+
+.table-header:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.table-header input {
+  float: left;
+  width: 25%;
+}
+.table-header button:last-child {
+  float: right;
+  width: 25%;
+}
+
+table th, table tr, table td {
+  text-align: center;
+  border-color: antiquewhite;
+  margin: 0 0;
+}
+
+.nb-column-name {
+  width: 100%;
+  text-align: center;
+}
+
+.pagination {
+  max-width: 550px;
+  margin: auto;
+}
+h3 {
+  text-align: center;
+  margin: 10% 0;
+}
+.nb-column-id:not(th) {
+  transform: translate(25%, 0%);
+}
+.nb-column-name, .nb-column-image {
+  margin: 0;
+  padding: 0;
+}
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.img-hover-zoom {
+  height: auto; /* [1.1] Set it as per your need */
+  overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+}
+/* [2] Transition property for smooth transformation of images */
+.img-hover-zoom img {
+  transition: transform .5s ease;
+}
+/* [3] Finally, transforming the image when container gets hovered */
+.img-hover-zoom:hover img {
+  transform: scale(1.5);
+}
+
+@media screen and (max-width: 600px) {
+  * {
+    font-size: 9px;
+  }
+  .tableStyle {
+    width: 100%;
+    margin: 5% 0%;
+  }
+  .nb-column-id {
+    width: 15%;
+  }
+  .nb-column-name{
+    width: 20%;
+  }
+  .nb-column-image {
+    width: 65%;
+  }
+  .table-header input {
+    width: 50%;
+  }
+  .pagination {
+    width: 100%;
+    text-align: center;
+  }
+}
+@media screen and (min-width: 600px) {
+  .nb-column-name{
+    width: 20%;
+  }
+  .nb-column-image {
+    width: 70%;
+  }
+  .nb-column-id {
+    width: 10%;
+  }
+}
